@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'contact'=> 'pages#contact', as: 'contact'
 
   # 
-  resources :posts
-
+  resources :posts do
+    resources :comments
+  end
 end
