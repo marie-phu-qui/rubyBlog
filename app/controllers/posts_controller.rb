@@ -6,15 +6,18 @@ class PostsController < ApplicationController
         @post = Post.find(params[:id])
     end
     def new
-          
+        @post = Post.new          
     end
     def create
         #  check if it is submitting to sqlite3 on the browser =>
         # render plain: params[:post].inspect 
         @post = Post.new(post_params)
 
-        @post.save
-        redirect_to @post
+        if(@post.save)
+            redirect_to @post
+        else
+            render 'new'
+        end    
     end
     # A private function means it can only be accessed from this class
     private def post_params
