@@ -79,4 +79,19 @@ Run the migration to create the table :
   rake db:migrate
 ```
 
+* *The Model :* \
+A many to many model will pose an issue with the Delete part as it is linked to another table. It will look as such, if we want to delete the whole post, and the comments which are associated to it.
+```sh
+class Post < ApplicationRecord
+    has_many :comments, dependent: :destroy
+end
+````
 
+* *To link tables :* \
+To start a relationship between table we use 'belongs_to'.
+
+```sh
+class Comment < ApplicationRecord
+  belongs_to :post
+end
+```
