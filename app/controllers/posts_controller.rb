@@ -8,6 +8,17 @@ class PostsController < ApplicationController
     def new
         @post = Post.new          
     end
+    def edit
+        @post = Post.find(params[:id])        
+    end
+    def update
+        @post = Post.find(params[:id])   
+        if(@post.update(post_params))
+            redirect_to @post
+        else
+            render 'edit'
+        end      
+    end
     def create
         #  check if it is submitting to sqlite3 on the browser =>
         # render plain: params[:post].inspect 
